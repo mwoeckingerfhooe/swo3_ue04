@@ -68,10 +68,15 @@ void test_my_strncmp(void) {
 }
 
 void print_array_of_pointers(const char *a[], int len) {
-  UNUSED(a); UNUSED(len);
+  for (int i = 0; i<len; i++) {
+    printf("%s ", a[i]);
+  }
+  printf("\n");
 }
 
 void test_array_of_pointers(void) {
+  const char *a[] = {"Hello", "dynamic", "array"}; 
+  print_array_of_pointers(a, ALEN(a)); 
 }
 
 void test_pointer_of_pointer(void) {

@@ -54,4 +54,20 @@ bool prepend(list_t *list, int value) {
     list->n++;
     return true;
   }
+}
+
+static void print_node(node_t *node) { 
+  printf("%d", node->value);
+} 
+
+void print_list(list_t *list) { 
+  printf("n=%d: ", list->n);
+  node_t *current = list->first;
+  while(current != NULL) {
+    print_node(current);
+    current = current->next;
+    if (current != NULL)
+      printf(", ");
+  }
+  printf("\n");
 } 

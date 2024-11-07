@@ -88,7 +88,18 @@ void test_pointer_of_pointer(void) {
   printf("pointer (%p) to pointer (%p) to x = %d\n", (void*)pp, (void*)*pp, **pp);
 }
 
+int add(int a, int b) { return a + b; } 
+int sub(int a, int b) { return a - b; } 
+char invalid_int_op(char a, char b) { return a + b;} 
+
+typedef int (*binary_int_op_t)(int, int); 
+
 void test_function_pointer(void) {
+  binary_int_op_t ops[] = {&add, &sub};
+  ops[0] = invalid_int_op; // still works, produces compiler warning
+  for (size_t i = 0; i<ALEN(ops); i++) {
+    printf("operation %zu: result = %d\n", i, ops[i](3, 5));
+  }
 }
 
 void test_struct(void) {

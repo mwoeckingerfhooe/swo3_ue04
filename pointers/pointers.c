@@ -37,12 +37,34 @@ void test_print(void) {
 }
 
 int my_strncmp(char *a, char *b , int maxlen) {
-  UNUSED(a); UNUSED(b); UNUSED(maxlen);
-  return 0;
+  int i; 
+  for (i = 0; i<maxlen && a[i] != '\0' && b[i] != '\0'; i++) { 
+    if (a[i] != b[i]) 
+      return (int)a[i] - (int)b[i]; 
+  } 
+  if (a[i] != '\0') return (int)a[i]; 
+  if (b[i] != '\0') return -(int)b[i]; 
+  return 0; 
 }
 
+#define MYCMP(a, b) DEBUG(my_strncmp(a, b, MIN_ALEN(a, b)))
 
 void test_my_strncmp(void) {
+  char a[] = "AAA";
+  char aa[] = "AAAA";
+  char b[] = "AAB";
+  char c[] = "C";
+  char empty[] = "";
+
+  printf("a = '%s', aa = '%s', b = '%s', c = '%s', empty = '%s'\n",  a, aa, b, c, empty);
+  MYCMP(a, aa);
+  MYCMP(a, b);
+  MYCMP(a, c);
+  MYCMP(a, empty);
+  MYCMP(aa, b);
+  MYCMP(aa, c);
+  MYCMP(aa, empty);
+  MYCMP(b, c);
 }
 
 void print_array_of_pointers(const char *a[], int len) {

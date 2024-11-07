@@ -3,6 +3,10 @@
 
 #define DEBUG(X) printf("%s -> %d\n", (#X), (X))
 
+void print_int(int value) { 
+  printf("%d, ", value);
+} 
+
 int main(void) {
   list_t *list = create_list();
   DEBUG(length(list));
@@ -12,6 +16,9 @@ int main(void) {
   prepend(list, 0);
   DEBUG(length(list));
   print_list(list);
+
+  for_each(list, print_int);
+  printf("\n");
 
   return 0;
 }

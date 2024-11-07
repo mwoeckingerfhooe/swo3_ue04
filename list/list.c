@@ -70,4 +70,12 @@ void print_list(list_t *list) {
       printf(", ");
   }
   printf("\n");
+}
+
+void for_each(list_t *list, iterator_t it) { 
+  node_t *current = list->first;
+  while (current != NULL) {
+    it(current->value);
+    current = current->next;
+  }
 } 

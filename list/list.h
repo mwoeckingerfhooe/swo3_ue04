@@ -10,3 +10,6 @@ list_t* create_list(void);
 int length(list_t *list); 
 bool prepend(list_t *list, int value);
 void print_list(list_t *list);
+
+typedef void (*iterator_t)(int value);
+void for_each(list_t *list, iterator_t it);

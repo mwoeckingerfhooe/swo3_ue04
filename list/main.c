@@ -4,6 +4,11 @@
 #define DEBUG(X) printf("%s -> %d\n", (#X), (X))
 
 int main(void) {
+  list_t *list = create_list();
+  DEBUG(length(list));
+  prepend(list, 1);
+  prepend(list, 0);
+  DEBUG(length(list));
 
   return 0;
 }

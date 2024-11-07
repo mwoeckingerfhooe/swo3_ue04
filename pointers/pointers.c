@@ -6,6 +6,16 @@
 #define LENGTH 50
 
 void test_malloc(void) {
+  char *s = malloc(sizeof(*s) * LENGTH);
+  if (s == NULL) {
+    printf("out of memory!\n");
+    return;
+  }
+  strncpy(s, "Hello, dynamic memory!", LENGTH); // C99
+  // strncpy_s(s, 50, "Hello, dynamic string!", LENGTH); // C11 Visual Studio
+  // strlcpy(s, "Hello, dynamic memory!", LENGTH); // BSD
+  printf("%s\n", s);
+  free(s);
 }
 
 void print_char_array(char s[]) {

@@ -1,0 +1,9 @@
+build/
+out/
+
+# clion
+cmake-build-debug/
+cmake-build-release/
+.idea/*.iws
+.idea/workspace.xml
+.idea/tasks.xml

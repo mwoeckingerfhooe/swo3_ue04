@@ -109,8 +109,9 @@ typedef struct address {
   char *city; // NOTE: for pointer, only address is copied
 } address_t; 
 
-void print_address(address_t a) { 
-  printf("%s %d\n%d %s\n", a.street, a.nr, a.zip, a.city);
+void print_address(const address_t* a) {
+  // printf("%s %d\n%d %s\n", a.street, a.nr, a.zip, a.city);
+  printf("%s %d\n%d %s\n", (*a).street, a->nr, a->zip, a->city);
 }
 
 void test_struct(void) {
@@ -124,11 +125,13 @@ void test_struct(void) {
     return;
   }
   strncpy(a.city, "Hagenberg", 50);
-  print_address(a);
+  // print_address(a);
+  print_address(&a);
 
   printf("copying address...\n");
   address_t a2 = a; // NOTE: copied
-  print_address(a2);
+  // print_address(a2);
+  print_address(&a2);
 
   printf("updating address 1...\n");
   // strncpy(a.street, "Hauptplatz", 40);
@@ -137,10 +140,12 @@ void test_struct(void) {
   strncpy(a.city, "LINZ!", 50); // NOTE: city now both Linz
 
   printf("address 1:\n");
-  print_address(a);
+  // print_address(a);
+  print_address(&a);
 
   printf("address 2 (implicitly updated through common pointer):\n");
-  print_address(a2);
+  // print_address(a2);
+  print_address(&a2);
 
   free(a.city); // NOTE: always free allocated memory
   printf("sizeof(a) = %zu", sizeof(a));

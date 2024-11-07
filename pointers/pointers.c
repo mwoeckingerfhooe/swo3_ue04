@@ -19,14 +19,21 @@ void test_malloc(void) {
 }
 
 void print_char_array(char s[]) {
-  UNUSED(s);
+  for (int i = 0; s[i] != '\0'; i++)
+    putchar(s[i]);
 }
 
 void print_char_pointer(char *s) {
-  UNUSED(s);
+  while (*s != '\0') {
+    putchar(*s);
+    s++;
+  }
 }
 
 void test_print(void) {
+  char s[] = "Hello, World!\n";
+  print_char_array(s);
+  print_char_pointer(s);
 }
 
 int my_strncmp(char *a, char *b , int maxlen) {

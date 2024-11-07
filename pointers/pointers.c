@@ -80,6 +80,12 @@ void test_array_of_pointers(void) {
 }
 
 void test_pointer_of_pointer(void) {
+  int x = 123;
+  int *p = &x;
+  int **pp = &p;
+  printf("x = %d\n", x);
+  printf("pointer (%p) to x = %d\n", (void*)p, *p);
+  printf("pointer (%p) to pointer (%p) to x = %d\n", (void*)pp, (void*)*pp, **pp);
 }
 
 void test_function_pointer(void) {

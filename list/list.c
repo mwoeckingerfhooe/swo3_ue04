@@ -79,3 +79,17 @@ void for_each(list_t *list, iterator_t it) {
     current = current->next;
   }
 } 
+
+// NOTE: list_t** => we can set the pointer to NULL in function
+void destroy(list_t **list_handle) { 
+  if (*list_handle == NULL)
+    return;
+  node_t *current = (*list_handle)->first;
+  while (current != NULL) {
+    node_t *next = current->next;
+    free(current);
+    current = next;
+  }
+  free(*list_handle);
+  *list_handle = NULL;
+} 

@@ -20,5 +20,7 @@ int main(void) {
   for_each(list, print_int);
   printf("\n");
 
+  destroy(&list); // NOTE: & => address of pointer
+
   return 0;
 }

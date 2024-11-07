@@ -33,6 +33,9 @@ int main(void) {
   print_list(list);
   DEBUG(is_sorted(list));
 
+  DEBUG(contains(list, 3));
+  DEBUG(contains(list, 4));
+
   destroy(&list); // NOTE: & => address of pointer
 
   return 0;

@@ -17,4 +17,6 @@ void destroy(list_t **list_handle);
 
 bool append(list_t *list, int value); 
 bool is_sorted(list_t *list); 
-bool insert(list_t *list, int value); 
+bool insert(list_t *list, int value);
+
+bool contains(list_t *list, int value);

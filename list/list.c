@@ -146,3 +146,18 @@ bool insert(list_t *list, int value) {
   assert(is_sorted(list));
   return true;
 }
+
+static node_t* find_next(node_t *start, int value) { 
+  node_t *current = start;
+  while (current != NULL) {
+    if (current->value == value) {
+      return current;
+    }
+    current = current->next;
+  }
+  return NULL;
+} 
+
+bool contains(list_t *list, int value) { 
+  return find_next(list->first, value) != NULL;
+}

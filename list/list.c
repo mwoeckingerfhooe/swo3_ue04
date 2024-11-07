@@ -161,3 +161,51 @@ static node_t* find_next(node_t *start, int value) {
 bool contains(list_t *list, int value) { 
   return find_next(list->first, value) != NULL;
 }
+
+static node_t* remove_node(list_t *list, node_t *node) { 
+  node_t* prev = NULL;
+  node_t* current = list->first;
+
+  // 1. look for node to delete
+  while (current != NULL && current != node) {
+    prev = current;
+    current = current->next;
+  }
+
+  // 2. delete node
+  if (current != NULL) { // found one
+    list->n--;
+    if (prev == NULL) {
+      list->first = current->next; // node is the first element
+      free(current);
+      return list->first;
+    } else {
+      prev->next = current->next; // node is in the middle or end
+      free(current);
+      return prev->next;
+    }
+  }
+  return NULL;
+} 
+
+bool delete_first(list_t *list, int value) { 
+  node_t *node = find_next(list->first, value);
+  if (node != NULL) {
+    remove_node(list, node);
+    return true;
+  }
+  return false;
+} 
+
+bool delete_all(list_t *list, int value) { 
+  node_t *current = list->first;
+  bool found_any = false;
+  while (current != NULL) {
+    current = find_next(current, value);
+    if (current != NULL) {
+      current = remove_node(list, current);
+      found_any = true;
+   }
+  }
+  return found_any;
+} 

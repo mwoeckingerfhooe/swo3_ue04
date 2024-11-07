@@ -14,3 +14,7 @@ void print_list(list_t *list);
 typedef void (*iterator_t)(int value);
 void for_each(list_t *list, iterator_t it);
 void destroy(list_t **list_handle);
+
+bool append(list_t *list, int value); 
+bool is_sorted(list_t *list); 
+bool insert(list_t *list, int value); 

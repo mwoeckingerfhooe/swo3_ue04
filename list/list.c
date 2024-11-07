@@ -93,3 +93,56 @@ void destroy(list_t **list_handle) {
   free(*list_handle);
   *list_handle = NULL;
 } 
+
+bool append(list_t *list, int value) { 
+  node_t *new_node = create_node(value);
+  if (new_node == NULL)
+    return false;
+  node_t *current;
+  if (list->first == NULL) {
+    list->first = new_node;
+  } else {
+    current = list->first;
+    while (current->next != NULL) {
+      current = current->next;
+    }
+    current->next = new_node;
+  }
+  list->n++;
+  return true;
+} 
+
+bool is_sorted(list_t *list) { 
+  node_t *current = list->first;
+  node_t *prev = NULL;
+  while (current != NULL) {
+    if (prev != NULL && prev->value > current->value)
+      return false;
+    prev = current;
+    current = current->next;
+  }
+  return true;
+} 
+
+bool insert(list_t *list, int value) { 
+  assert(is_sorted(list));
+  node_t *new_node = create_node(value);
+  if (new_node == NULL) {
+    return false;
+  }
+  node_t *curr = list->first;
+  node_t *prev = NULL;
+  while (curr != NULL && curr->value < value) {
+    prev = curr;
+    curr = curr->next;
+  }
+  if (prev == NULL) {
+    list->first = new_node;
+  } else {
+    prev->next = new_node;
+  }
+  new_node->next = curr;
+  list->n++;
+  assert(is_sorted(list));
+  return true;
+}
